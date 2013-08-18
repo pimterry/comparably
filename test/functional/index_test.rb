@@ -2,13 +2,13 @@ require 'sinatra'
 require 'test/unit'
 require 'rack/test'
 
-require './src/routes/index'
+require './app/routes/index'
 
 class IndexTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    Comparably
   end
 
   def test_index
