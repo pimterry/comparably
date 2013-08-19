@@ -1,12 +1,18 @@
-require './app/model/init'
 require 'mocha/setup'
 
-class GraphModelMock
-  def self.mock_model_in_app
-    Model.expects(:graph_model).returns(GraphModelMock.new)
-  end
+module UnitTests
+  class GraphModelMock
+    def self.mock_model_in_(appClass)
+      Class.new(appClass) do
+        def initialize
+          super
+          @graph_model = GraphModelMock.new
+        end
+      end
+    end
 
-  def method_missing(*args, &block)
-    nil
+    def method_missing(m, *args, &block)
+      nil
+    end
   end
 end
