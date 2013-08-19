@@ -2,14 +2,14 @@ require 'sinatra'
 require 'test/unit'
 require 'rack/test'
 
-require './app/app'
-require_relative './neo_mock'
+require './app/routes/index'
+require_relative './graph_model_mock'
 
 class IndexTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
-    NeoMock::mock_neo_in_model
+    GraphModelMock::mock_model_in_app
     Comparably
   end
 
